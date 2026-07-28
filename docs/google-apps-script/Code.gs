@@ -14,7 +14,9 @@ function doPost(e) {
     const ss = getSpreadsheet();
     const id = Utilities.getUuid();
     const now = new Date();
-    append('Completed Checklists', [body.businessDate, body.floorNumber, body.area, body.daypart, body.manager, 'Yes', now, body.notes || '']);
+    const actions = body.actions || {};
+    const notes = Object.keys(actions).map(function (questionId) { const action = actions[questionId] || {}; return action.action ? (action.issue ? action.issue + ': ' : '') + action.action : ''; }).filter(String).join('\n');
+    append('Completed Checklists', [body.businessDate, body.floorNumber, body.area, body.daypart, body.manager, 'Yes', now, notes || body.notes || '']);
     return json({ success: true, inspectionId: id });
   } catch (error) { return json({ success: false, error: error.message || 'Unable to save inspection.' }); }
   finally { try { lock.releaseLock(); } catch (ignored) {} }
