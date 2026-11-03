@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowLeft, ArrowRight, BarChart3, Check, ChevronRight, ClipboardCheck, Droplets, History, House, Plus, RotateCcw, Settings, ShieldCheck, Sparkles, Trash2, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, BarChart3, Check, ChevronRight, ClipboardCheck, Droplets, History, House, Plus, RotateCcw, Settings, ShieldCheck, Trash2, X } from "lucide-react";
 import { checklists } from "@/data/checklists";
 import { isFailed } from "@/lib/validation";
 import { loadInspections, saveInspections } from "@/lib/storage";
@@ -112,11 +112,6 @@ function Dashboard({ today, inspections, floor, onFloorChange, onStart, onResume
         <p className="text-xs font-black uppercase tracking-[.22em] text-[var(--blue)]">{new Date(`${today}T12:00:00Z`).toLocaleDateString(undefined, { timeZone: "UTC", weekday: "long", month: "short", day: "numeric" })}</p>
         <h1 className="mt-2 text-4xl font-black tracking-tight text-[var(--ink)] sm:text-5xl">Ready for service?</h1>
         <p className="mt-2 text-sm text-[var(--muted)]">Business day changes at 4 AM Eastern.</p>
-      </div>
-      <div className="rounded-2xl bg-[var(--navy)] p-4 text-right text-white">
-        <Sparkles className="ml-auto text-[var(--turf)]" size={18}/>
-        <p className="mt-2 text-2xl font-black">{getCompletedCount(inspections, today)}/30</p>
-        <p className="text-xs text-white/60">all floors complete</p>
       </div>
     </div>
     <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
